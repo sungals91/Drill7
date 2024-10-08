@@ -1,4 +1,5 @@
 from pico2d import *
+import random
 
 # Game object class here
 class Grass:
@@ -14,7 +15,7 @@ class Grass:
 
 class Boy:
     def __init__(self):
-        self.x, self.y = 0, 90
+        self.x, self.y = random.randint(0,400), 90
         self.frame = 0
         self.image = load_image('run_animation.png')
     def update(self):
@@ -28,22 +29,28 @@ class Boy:
 def reset_world():
     global running
     global grass
-    global boy
+    #global boy
+    global team
 
     running = True
     grass = Grass() # 잔디를 찍어낸다
-    boy = Boy()
+    #boy = Boy()
+    team = [Boy() for i in range(10)]
 
 def update_world():
     grass.update() # Grass 상태를 업데이트
-    boy.update()
+    #boy.update()
+    for boy in team:
+        boy.update()
 
     pass
 
 def render_world():
     clear_canvas()
     grass.draw()
-    boy.draw()
+    #boy.draw()
+    for boy in team:
+        boy.draw()
     update_canvas()
 
 def handle_events():
