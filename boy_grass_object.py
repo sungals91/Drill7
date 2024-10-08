@@ -32,7 +32,8 @@ class Big_ball:
         self.x, self.y = random.randint(100, 700), 599
         self.image = load_image('ball41x41.png')
     def update(self):
-        self.y -= 4
+        speed = random.randint(2,10)
+        self.y -= speed
         if self.y <= 80:
             self.y = 80
         pass
@@ -45,7 +46,8 @@ class Small_ball:
         self.x, self.y = random.randint(100,700), 599
         self.image = load_image('ball21x21.png')
     def update(self):
-        self.y -= 4
+        speed = random.randint(2,10)
+        self.y -= speed
         if self.y <= 80:
             self.y = 80
         pass
