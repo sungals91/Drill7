@@ -12,21 +12,38 @@ class Grass:
         self.image.draw(400,30)
     pass
 
+class Boy:
+    def __init__(self):
+        self.x, self.y = 0, 90
+        self.frame = 0
+        self.image = load_image('run_animation.png')
+    def update(self):
+        self.frame = (self.frame + 1) % 8
+        self.x += 5
+        pass
+    def draw(self):
+        self.image.clip_draw(self.frame * 100, 0, 100, 100, self.x, self.y)
+
 
 def reset_world():
     global running
     global grass
+    global boy
 
     running = True
     grass = Grass() # 잔디를 찍어낸다
+    boy = Boy()
 
 def update_world():
     grass.update() # Grass 상태를 업데이트
+    boy.update()
+
     pass
 
 def render_world():
     clear_canvas()
     grass.draw()
+    boy.draw()
     update_canvas()
 
 def handle_events():
